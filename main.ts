@@ -45,7 +45,7 @@ let DigitalRJ = [DigitalPin.P8, DigitalPin.P1,
                 DigitalPin.P14, DigitalPin.P13,
                 DigitalPin.P16, DigitalPin.P15]
 
-enum RJPin {
+enum RJPort {
     //% block="J1"
     J1,
     //% block="J2"
@@ -145,37 +145,37 @@ namespace Nezha {
         pins.i2cWriteBuffer(0x10, iic_buffer);
     }
 
-    // RJPIN MODULE
+    // RJPort MODULE
 
-    export function analogReadA(pin: RJPin): number {
-        return pins.analogReadPin(AnalogRJ[pin * 2])
+    export function analogReadA(port: RJPort): number {
+        return pins.analogReadPin(AnalogRJ[port * 2])
     }
 
-    export function analogReadB(pin: RJPin): number {
-        return pins.analogReadPin(AnalogRJ[pin * 2 + 1])
+    export function analogReadB(port: RJPort): number {
+        return pins.analogReadPin(AnalogRJ[port * 2 + 1])
     }
 
-    export function analogWriteA(pin: RJPin, value: number) {
-        return pins.analogWritePin(AnalogRJ[pin * 2], value)
+    export function analogWriteA(port: RJPort, value: number) {
+        return pins.analogWritePin(AnalogRJ[port * 2], value)
     }
 
-    export function analogWriteB(pin: RJPin, value: number) {
-        return pins.analogWritePin(AnalogRJ[pin * 2 + 1], value)
+    export function analogWriteB(port: RJPort, value: number) {
+        return pins.analogWritePin(AnalogRJ[port * 2 + 1], value)
     }
 
-    export function digitalReadA(pin: RJPin): number {
-        return pins.digitalReadPin(AnalogRJ[pin * 2])
+    export function digitalReadA(port: RJPort): number {
+        return pins.digitalReadPin(AnalogRJ[port * 2])
     }
 
-    export function digitalReadB(pin: RJPin): number {
-        return pins.digitalReadPin(AnalogRJ[pin * 2 + 1])
+    export function digitalReadB(port: RJPort): number {
+        return pins.digitalReadPin(AnalogRJ[port * 2 + 1])
     }
 
-    export function digitalWriteA(pin: RJPin, value: number) {
-        return pins.analogWritePin(AnalogRJ[pin * 2], value)
+    export function digitalWriteA(port: RJPort, value: number) {
+        return pins.analogWritePin(AnalogRJ[port * 2], value)
     }
 
-    export function digitalWriteB(pin: RJPin, value: number) {
-        return pins.digitalWritePin(AnalogRJ[pin * 2 + 1], value)
+    export function digitalWriteB(port: RJPort, value: number) {
+        return pins.digitalWritePin(AnalogRJ[port * 2 + 1], value)
     }
 }

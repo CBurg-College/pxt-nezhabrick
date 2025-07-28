@@ -147,35 +147,19 @@ namespace Nezha {
 
     // RJPort MODULE
 
-    export function analogReadA(port: RJPort): number {
-        return pins.analogReadPin(AnalogRJ[port * 2])
+    export function analogPinA(port: RJPort): number {
+        return AnalogRJ[port * 2]
     }
 
-    export function analogReadB(port: RJPort): number {
-        return pins.analogReadPin(AnalogRJ[port * 2 + 1])
+    export function analogPinB(port: RJPort): number {
+        return AnalogRJ[port * 2 + 1]
     }
 
-    export function analogWriteA(port: RJPort, value: number) {
-        return pins.analogWritePin(AnalogRJ[port * 2], value)
+    export function digitalPinA(port: RJPort): number {
+        return DigitalRJ[port * 2]
     }
 
-    export function analogWriteB(port: RJPort, value: number) {
-        return pins.analogWritePin(AnalogRJ[port * 2 + 1], value)
-    }
-
-    export function digitalReadA(port: RJPort): number {
-        return pins.digitalReadPin(AnalogRJ[port * 2])
-    }
-
-    export function digitalReadB(port: RJPort): number {
-        return pins.digitalReadPin(AnalogRJ[port * 2 + 1])
-    }
-
-    export function digitalWriteA(port: RJPort, value: number) {
-        return pins.analogWritePin(AnalogRJ[port * 2], value)
-    }
-
-    export function digitalWriteB(port: RJPort, value: number) {
-        return pins.digitalWritePin(AnalogRJ[port * 2 + 1], value)
+    export function digitalPinB(port: RJPort): number {
+        return DigitalRJ[port * 2 + 1]
     }
 }

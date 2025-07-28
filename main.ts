@@ -40,6 +40,7 @@ let AnalogRJ = [AnalogPin.P8, AnalogPin.P1,
                 AnalogPin.P12, AnalogPin.P2,
                 AnalogPin.P14, AnalogPin.P13,
                 AnalogPin.P16, AnalogPin.P15]
+
 let DigitalRJ = [DigitalPin.P8, DigitalPin.P1,
                 DigitalPin.P12, DigitalPin.P2,
                 DigitalPin.P14, DigitalPin.P13,

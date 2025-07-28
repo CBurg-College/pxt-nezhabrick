@@ -58,22 +58,22 @@ namespace Nezha {
     let Motors = [Motor.M1, Motor.M2, Motor.M3, Motor.M4]
     let Revert = [false, false, false, false]
 
-    function setFrontLeftMotor(motor: Motor, revert: boolean) {
+    export function setFrontLeftMotor(motor: Motor, revert: boolean) {
         Motors[0] = motor
         Revert[0] = revert
     }
 
-    function setFrontRightMotor(motor: Motor, revert: boolean) {
+    export function setFrontRightMotor(motor: Motor, revert: boolean) {
         Motors[1] = motor
         Revert[1] = revert
     }
 
-    function setBackLeftMotor(motor: Motor, revert: boolean) {
+    export function setBackLeftMotor(motor: Motor, revert: boolean) {
         Motors[2] = motor
         Revert[2] = revert
     }
 
-    function setBackRightMotor(motor: Motor, revert: boolean) {
+    export function setBackRightMotor(motor: Motor, revert: boolean) {
         Motors[3] = motor
         Revert[3] = revert
     }
@@ -122,7 +122,7 @@ namespace Nezha {
 
     let Servos = [180, 180, 180, 180] // all ServoType.ST180
 
-    function setServoType(servo: Servo, st: ServoType) {
+    export function setServoType(servo: Servo, st: ServoType) {
         Servos[servo] = st
     }
 

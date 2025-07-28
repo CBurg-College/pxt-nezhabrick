@@ -68,6 +68,16 @@ namespace Nezha {
     let Motors = [Motor.M1, Motor.M2, Motor.M3, Motor.M4]
     let Revert = [false, false, false, false]
 
+    export function setLeftMotor(motor: Motor, revert: boolean) {
+        Motors[0] = motor
+        Revert[0] = revert
+    }
+
+    export function setRightMotor(motor: Motor, revert: boolean) {
+        Motors[1] = motor
+        Revert[1] = revert
+    }
+
     export function setFrontLeftMotor(motor: Motor, revert: boolean) {
         Motors[0] = motor
         Revert[0] = revert

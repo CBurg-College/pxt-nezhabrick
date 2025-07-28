@@ -36,15 +36,26 @@ enum ServoType {
     ST360 = 360
 }
 
-enum RJPin {
-    //% block="RJ1"
-    RJ1,
-    //% block="RJ2"
-    RJ2,
-    //% block="RJ3"
-    RJ3,
-    //% block="RJ4"
-    RJ4
+enum AnalogRJ {
+    //% block="J1"
+    J1 = AnalogPin.P1,
+    //% block="J2"
+    J2 = AnalogPin.P2,
+    //% block="J3"
+    J3 = AnalogPin.P13,
+    //% block="J4"
+    J4 = AnalogPin.P15
+}
+
+enum DigitalRJ {
+    //% block="J1"
+    J1 = DigitalPin.P8,
+    //% block="J2"
+    J2 = DigitalPin.P12,
+    //% block="J3"
+    J3 = DigitalPin.P14,
+    //% block="J4"
+    J4 = DigitalPin.P16
 }
 
 namespace Nezha {
@@ -138,22 +149,19 @@ namespace Nezha {
 
     // RJPIN MODULE
 
-    let ANAPIN = [DigitalPin.P1, DigitalPin.P2, DigitalPin.P13,DigitalPin.P15]
-    let DIGPIN = [DigitalPin.P8, DigitalPin.P12, DigitalPin.P14, DigitalPin.P16]
-
-    export function analogRead(pin: RJPin): number {
-        return pins.analogReadPin(ANAPIN[pin])
+    export function analogRead(pin: AnalogRJ): number {
+        return pins.analogReadPin(pin)
     }
 
-    export function analogWrite(pin: RJPin, value:number) {
-        return pins.analogWritePin(ANAPIN[pin], value)
+    export function analogWrite(pin: AnalogRJ, value:number) {
+        return pins.analogWritePin(pin, value)
     }
 
-    export function digitalRead(pin: RJPin): boolean {
-        return (pins.digitalReadPin(DIGPIN[pin]) ? true : false)
+    export function digitalRead(pin: DigitalRJ): boolean {
+        return (pins.digitalReadPin(pin) ? true : false)
     }
 
-    export function digitalWrite(pin: RJPin, value: number) {
-        return pins.analogWritePin(ANAPIN[pin], value)
+    export function digitalWrite(pin: DigitalRJ, value: number) {
+        return pins.analogWritePin(pin, value)
     }
 }

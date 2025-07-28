@@ -64,8 +64,8 @@ namespace Nezha {
 
     let MFL = 0
     let MFR = 1
-    let MBL = 2
-    let MBR = 3
+    let MRL = 2
+    let MRR = 3
     let Motors = [Motor.M1, Motor.M2, Motor.M3, Motor.M4]
     let Revert = [false, false, false, false]
 
@@ -79,12 +79,12 @@ namespace Nezha {
         Revert[1] = revert
     }
 
-    export function setBackLeftMotor(motor: Motor, revert: boolean) {
+    export function setRearLeftMotor(motor: Motor, revert: boolean) {
         Motors[2] = motor
         Revert[2] = revert
     }
 
-    export function setBackRightMotor(motor: Motor, revert: boolean) {
+    export function setRearRightMotor(motor: Motor, revert: boolean) {
         Motors[3] = motor
         Revert[3] = revert
     }
@@ -118,8 +118,8 @@ namespace Nezha {
         // supply positive values to obtain 'forward' spinning
         motorSpeed(Motors[MFL], Revert[MFL] ? -frontleft : frontleft)
         motorSpeed(Motors[MFR], Revert[MFR] ? -frontright : frontright)
-        motorSpeed(Motors[MBL], Revert[MBL] ? -backleft : backleft)
-        motorSpeed(Motors[MBR], Revert[MBR] ? -backright : backright)
+        motorSpeed(Motors[MRL], Revert[MRL] ? -backleft : backleft)
+        motorSpeed(Motors[MRR], Revert[MRR] ? -backright : backright)
     }
 
     // speed in %

@@ -36,26 +36,24 @@ enum ServoType {
     ST360 = 360
 }
 
-enum AnalogRJ {
-    //% block="J1"
-    J1 = AnalogPin.P1,
-    //% block="J2"
-    J2 = AnalogPin.P2,
-    //% block="J3"
-    J3 = AnalogPin.P13,
-    //% block="J4"
-    J4 = AnalogPin.P15
-}
+let AnalogRJ = [AnalogPin.P8, AnalogPin.P1,
+                AnalogPin.P12, AnalogPin.P2,
+                AnalogPin.P14, AnalogPin.P13,
+                AnalogPin.P16, AnalogPin.P15]
+let DigitalRJ = [DigitalPin.P8, DigitalPin.P1,
+                DigitalPin.P12, DigitalPin.P2,
+                DigitalPin.P14, DigitalPin.P13,
+                DigitalPin.P16, DigitalPin.P15]
 
-enum DigitalRJ {
+enum RJPin {
     //% block="J1"
-    J1 = DigitalPin.P8,
+    J1,
     //% block="J2"
-    J2 = DigitalPin.P12,
+    J2,
     //% block="J3"
-    J3 = DigitalPin.P14,
+    J3,
     //% block="J4"
-    J4 = DigitalPin.P16
+    J4
 }
 
 namespace Nezha {
@@ -149,19 +147,35 @@ namespace Nezha {
 
     // RJPIN MODULE
 
-    export function analogRead(pin: AnalogRJ): number {
-        return pins.analogReadPin(pin)
+    export function analogReadA(pin: RJPin): number {
+        return pins.analogReadPin(AnalogRJ[pin * 2])
     }
 
-    export function analogWrite(pin: AnalogRJ, value:number) {
-        return pins.analogWritePin(pin, value)
+    export function analogReadB(pin: RJPin): number {
+        return pins.analogReadPin(AnalogRJ[pin * 2 + 1])
     }
 
-    export function digitalRead(pin: DigitalRJ): boolean {
-        return (pins.digitalReadPin(pin) ? true : false)
+    export function analogWriteA(pin: RJPin, value: number) {
+        return pins.analogWritePin(AnalogRJ[pin * 2], value)
     }
 
-    export function digitalWrite(pin: DigitalRJ, value: number) {
-        return pins.analogWritePin(pin, value)
+    export function analogWriteB(pin: RJPin, value: number) {
+        return pins.analogWritePin(AnalogRJ[pin * 2 + 1], value)
+    }
+
+    export function digitalReadA(pin: RJPin): number {
+        return pins.digitalReadPin(AnalogRJ[pin * 2])
+    }
+
+    export function digitalReadB(pin: RJPin): number {
+        return pins.digitalReadPin(AnalogRJ[pin * 2 + 1])
+    }
+
+    export function digitalWriteA(pin: RJPin, value: number) {
+        return pins.analogWritePin(AnalogRJ[pin * 2], value)
+    }
+
+    export function digitalWriteB(pin: RJPin, value: number) {
+        return pins.digitalWritePin(AnalogRJ[pin * 2 + 1], value)
     }
 }

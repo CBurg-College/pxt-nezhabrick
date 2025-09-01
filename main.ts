@@ -5,37 +5,6 @@ The code below is a refactoring of:
 MIT-license.
 */
 
-enum Motor {
-    //% block="M1"
-    M1,
-    //% block="M2"
-    M2,
-    //% block="M3"
-    M3,
-    //% block="M4"
-    M4
-}
-
-enum Servo {
-    //% block="S1" 
-    S1,
-    //% block="S2"
-    S2,
-    //% block="S3" 
-    S3,
-    //% block="S4"
-    S4
-}
-
-enum ServoType {
-    //% block="180"
-    ST180 = 180,
-    //% block="180"
-    ST27 = 270,
-    //% block="360"
-    ST360 = 360
-}
-
 let AnalogRJ = [AnalogPin.P8, AnalogPin.P1,
                 AnalogPin.P12, AnalogPin.P2,
                 AnalogPin.P14, AnalogPin.P13,
@@ -45,17 +14,6 @@ let DigitalRJ = [DigitalPin.P8, DigitalPin.P1,
                 DigitalPin.P12, DigitalPin.P2,
                 DigitalPin.P14, DigitalPin.P13,
                 DigitalPin.P16, DigitalPin.P15]
-
-enum RJPort {
-    //% block="J1"
-    J1,
-    //% block="J2"
-    J2,
-    //% block="J3"
-    J3,
-    //% block="J4"
-    J4
-}
 
 namespace Nezha {
 
@@ -123,7 +81,7 @@ namespace Nezha {
     }
 
     // speed in %
-    export function setFourWheelSpeed(frontleft: number, frontright: number, backleft: number, backright: number) {
+    export function fourWheelSpeed(frontleft: number, frontright: number, backleft: number, backright: number) {
         // supply positive values to obtain 'forward' spinning
         motorSpeed(Motors[MFL], Revert[MFL] ? -frontleft : frontleft)
         motorSpeed(Motors[MFR], Revert[MFR] ? -frontright : frontright)
@@ -132,7 +90,7 @@ namespace Nezha {
     }
 
     // speed in %
-    export function setTwoWheelSpeed(left: number, right: number) {
+    export function twoWheelSpeed(left: number, right: number) {
         // supply positive values to obtain 'forward' spinning
         motorSpeed(Motors[MFL], Revert[MFL] ? -left : left)
         motorSpeed(Motors[MFR], Revert[MFR] ? -right : right)
@@ -156,21 +114,34 @@ namespace Nezha {
         pins.i2cWriteBuffer(0x10, iic_buffer);
     }
 
+    export function servoSpeed(servo: Servo, speed: number): void {
+        if ( Servos[servo] != ServoType.ST180) return
+        speed = Math.map(speed, -100, 100, 0, 180)
+        let iic_buffer = pins.createBuffer(4);
+        iic_buffer[0] = 0x10 + servo
+        iic_buffer[1] = speed;
+        iic_buffer[2] = 0;
+        iic_buffer[3] = 0;
+        pins.i2cWriteBuffer(0x10, iic_buffer);
+    }
+
     // RJPort MODULE
 
-    export function analogPinA(port: RJPort): number {
-        return AnalogRJ[port * 2]
+    export function analogRead(port: RJPort, line: RJLine): number {
+        return pins.analogReadPin(AnalogRJ[port * 2 + line])
     }
 
-    export function analogPinB(port: RJPort): number {
-        return AnalogRJ[port * 2 + 1]
+    export function analogWrite(port: RJPort, line: RJLine, value: number) {
+        pins.analogWritePin(AnalogRJ[port * 2 + line], value)
     }
 
-    export function digitalPinA(port: RJPort): number {
-        return DigitalRJ[port * 2]
+    export function digitalRead(port: RJPort, line: RJLine): Digital {
+        return pins.digitalReadPin(DigitalRJ[port * 2 + line])
     }
 
-    export function digitalPinB(port: RJPort): number {
-        return DigitalRJ[port * 2 + 1]
+    export function digitalWrite(port: RJPort, line: RJLine, value: Digital) {
+        pins.digitalWritePin(DigitalRJ[port * 2 + line], value);
     }
 }
+
+

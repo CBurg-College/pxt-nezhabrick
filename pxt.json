@@ -4,7 +4,8 @@
     "dependencies": {
         "core": "*",
         "radio": "*",
-        "microphone": "*"
+        "microphone": "*",
+        "pxt-ef-definitions": "github:CBurg-College/pxt-ef-definitions#fa15ffeeb22133904cd46b07fc8fa1e8f3c1e319"
     },
     "files": [
         "main.blocks",
@@ -15,7 +16,7 @@
         "test.ts"
     ],
     "targetVersions": {
-        "target": "8.0.11",
+        "target": "8.0.16",
         "targetId": "microbit"
     },
     "supportedTargets": [

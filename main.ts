@@ -127,6 +127,14 @@ namespace Nezha {
 
     // RJPort MODULE
 
+    export function analogPin(port: RJPort, line: RJLine): number {
+        return AnalogRJ[port * 2 + line]
+    }
+
+    export function digitalPin(port: RJPort, line: RJLine): number {
+        return DigitalRJ[port * 2 + line]
+    }
+
     export function analogRead(port: RJPort, line: RJLine): number {
         return pins.analogReadPin(AnalogRJ[port * 2 + line])
     }

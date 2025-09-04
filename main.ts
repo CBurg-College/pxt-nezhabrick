@@ -5,7 +5,7 @@ The code below is a refactoring of:
 MIT-license.
 */
 
-namespace Nezha {
+namespace NezhaBrick {
 
     // MOTOR MODULE
 

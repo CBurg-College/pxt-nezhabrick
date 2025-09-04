@@ -5,16 +5,6 @@ The code below is a refactoring of:
 MIT-license.
 */
 
-let AnalogRJ = [AnalogPin.P8, AnalogPin.P1,
-                AnalogPin.P12, AnalogPin.P2,
-                AnalogPin.P14, AnalogPin.P13,
-                AnalogPin.P16, AnalogPin.P15]
-
-let DigitalRJ = [DigitalPin.P8, DigitalPin.P1,
-                DigitalPin.P12, DigitalPin.P2,
-                DigitalPin.P14, DigitalPin.P13,
-                DigitalPin.P16, DigitalPin.P15]
-
 namespace Nezha {
 
     // MOTOR MODULE
@@ -123,32 +113,6 @@ namespace Nezha {
         iic_buffer[2] = 0;
         iic_buffer[3] = 0;
         pins.i2cWriteBuffer(0x10, iic_buffer);
-    }
-
-    // RJPort MODULE
-
-    export function analogPin(port: RJPort, line: RJLine): number {
-        return AnalogRJ[port * 2 + line]
-    }
-
-    export function digitalPin(port: RJPort, line: RJLine): number {
-        return DigitalRJ[port * 2 + line]
-    }
-
-    export function analogRead(port: RJPort, line: RJLine): number {
-        return pins.analogReadPin(AnalogRJ[port * 2 + line])
-    }
-
-    export function analogWrite(port: RJPort, line: RJLine, value: number) {
-        pins.analogWritePin(AnalogRJ[port * 2 + line], value)
-    }
-
-    export function digitalRead(port: RJPort, line: RJLine): Digital {
-        return pins.digitalReadPin(DigitalRJ[port * 2 + line])
-    }
-
-    export function digitalWrite(port: RJPort, line: RJLine, value: Digital) {
-        pins.digitalWritePin(DigitalRJ[port * 2 + line], value);
     }
 }
 
